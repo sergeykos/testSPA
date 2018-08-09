@@ -1,0 +1,45 @@
+@import 'mixins';
+
+.dropdown{
+    @include hiddenable($class: 'dropdown__variants');
+
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-size: 100% 100%;
+    &__icon{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-size: 100% 100%;
+        transition: box-shadow 0.15s linear;
+        &.en{
+            background-image: url('./images/en.svg');
+        }
+        &.ru{
+            background-image: url('./images/ru.svg');
+        }
+        &.ua{
+            background-image: url('./images/ua.svg');
+        }
+        &:hover{
+            box-shadow: 0 0 10px 2px #FFF;
+        }
+    }
+    &__variants{      
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        margin: 0 auto 0;
+        width: 30px;
+        transition: opacity 0.15s linear, visibility 0.15s;
+    }
+    
+}

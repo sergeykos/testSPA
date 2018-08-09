@@ -1,0 +1,32 @@
+@mixin hiddenable($class: '') {
+    @if ($class == ''){
+        &.hidden{
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    } @else{
+        &.hidden .#{$class}{
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+}
+
+@mixin shownable($class: '') {
+    @if ($class == ''){
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        &.shown{
+            opacity: 1;
+            visibility: visible;
+        }
+    } @else{
+        &.hidden .#{$class}{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

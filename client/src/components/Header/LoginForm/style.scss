@@ -1,0 +1,62 @@
+$className: 'header__login-form';
+
+.#{$className} {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    width: 250px;
+    font-size: 16px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    perspective: 800px;
+    transform: translateX(-50%);
+    transition: opacity 0.3s linear, visibility 0.3s;
+    > div {
+        position: absolute;
+        width: 100%;
+        padding-left: 10px;
+        padding-top: 10px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        background-color: rgba(97, 53, 35, 0.7);
+        transition: transform 0.3s linear;
+        > div {
+            position: relative;
+            width: 100%;
+            &:not(:nth-child(1)) {
+                margin-top: 30px;
+            }
+        }
+    }
+    input:not([name=submit]) {
+        position: absolute;
+        right: 10%;
+        top: 0;
+        width: 70px;
+    }
+    .#{$className}__signup {
+        transform: rotateY(180deg);
+    }
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+    &.signin {
+        .#{$className}__signin {
+            transform: rotateY(0deg);
+        }
+        .#{$className}__signup {
+            transform: rotateY(180deg);
+        }
+    }
+    &.signup {
+        .#{$className}__signin {
+            transform: rotateY(-180deg);
+        }
+        .#{$className}__signup {
+            transform: rotateY(0deg);
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@import 'mixins';
+
+$className: 'header__login-signup';
+
+.#{$className}{
+    display: inline-block;
+    .#{$className}__label{      
+        cursor: pointer;
+        color: #8C782C;
+        font-style: italic;
+        text-decoration: underline;
+    }
+}
