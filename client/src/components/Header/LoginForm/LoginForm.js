@@ -8,7 +8,7 @@ class Header extends React.Component{
     render(){
         let element;
 
-        element = ( 
+        element = (
             <div className={ this.props.className + ' ' + this.props.action }>
                 
                 <div className={ this.props.className + '__signin' }>
