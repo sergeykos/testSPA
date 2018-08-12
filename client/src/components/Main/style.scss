@@ -1,0 +1,21 @@
+$className: 'main';
+
+.#{$className} {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 560px;
+    .#{$className}__text-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 600px;
+        height: 100%;
+        padding-left: 30px;
+        padding-top: 30px;
+        font-size: 32px;
+        text-align: left;
+        text-indent: 5%;
+        line-height: 1.7;
+    }
+}

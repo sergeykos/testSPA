@@ -1,7 +1,6 @@
 import React from 'react';
-import DropdownVariant from '../DropdownVariant/DropdownVariant';
-import './style.scss';
-import '../../style/_mixins.scss';
+import DropdownVariant from './DropdownVariant/DropdownVariant';
+import './style';
 
 const CLASSNAME_PREFIX = 'dropdown';
 const LANGUAGES = ['ru', 'en', 'ua'];

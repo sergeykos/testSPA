@@ -33,9 +33,14 @@ class Header extends React.Component{
     toggle(event){
         let target = event.target;
 
-        this.setState({
-            action: target.dataset['action']
-        });
+        if (target.dataset['action'] === this.state.action)
+            this.setState({
+                action: 'hidden'
+            });
+        else
+            this.setState({
+                action: target.dataset['action']
+            });
     }
 }
 
