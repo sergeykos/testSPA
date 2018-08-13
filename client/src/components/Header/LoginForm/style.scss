@@ -1,10 +1,10 @@
-$className: 'header__login-form';
+$className: 'header__login__form';
 
 .#{$className} {
     position: absolute;
     left: 50%;
     top: 80px;
-    width: 250px;
+    width: 280px;
     color: #8C782C;
     font-size: 16px;
     border-radius: 25px;
@@ -12,19 +12,30 @@ $className: 'header__login-form';
     perspective: 800px;
     transform: translateX(-50%);
     transition: opacity 0.3s linear, visibility 0.3s;
-    > div {
+    .#{$className}-signin, .#{$className}-signup {
         position: absolute;
         width: 100%;
         padding: 10px;
+        text-align: right;
         border-radius: 10px;
         box-sizing: border-box;
         backface-visibility: hidden;
         transform-style: preserve-3d;
         background-color: rgba(97, 53, 35, 0.7);
         transition: transform 0.3s linear;
-        > div {
+        .#{$className}__row {
             position: relative;
             width: 100%;
+            input[name=submit]{
+                display: inline-block;
+            }
+            .text {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                line-height: 1.6;
+            }
             &:not(:nth-child(1)) {
                 margin-top: 30px;
             }
@@ -33,16 +44,7 @@ $className: 'header__login-form';
             }
         }
     }
-    input[name=submit]{
-        display: inline-block;
-    }
-    input:not([name=submit]) {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 70px;
-    }
-    .#{$className}__signup {
+    .#{$className}-signup {
         transform: rotateY(180deg);
     }
     &.hidden {
@@ -50,18 +52,18 @@ $className: 'header__login-form';
         visibility: hidden;
     }
     &.signin {
-        .#{$className}__signin {
+        .#{$className}-signin {
             transform: rotateY(0deg);
         }
-        .#{$className}__signup {
+        .#{$className}-signup {
             transform: rotateY(180deg);
         }
     }
     &.signup {
-        .#{$className}__signin {
+        .#{$className}-signin {
             transform: rotateY(-180deg);
         }
-        .#{$className}__signup {
+        .#{$className}-signup {
             transform: rotateY(0deg);
         }
     }

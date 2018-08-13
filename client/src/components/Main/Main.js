@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from 'components/common/Input/Input';
 //import Chat from './Chat/Chat';
 import './style';
 

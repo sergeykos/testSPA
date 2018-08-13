@@ -52,11 +52,58 @@
     margin: 0 auto 0;
     width: 30px;
     transition: opacity 0.15s linear, visibility 0.15s; }
-.header__login-form {
+.input {
+  display: inline-block;
+  position: relative;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: solid 2px #9D4B2D; }
+  .input .input__body {
+    width: 100%;
+    height: 100%;
+    padding: 0px 20% 0px 8%;
+    color: inherit;
+    font-size: inherit;
+    border-radius: 6px;
+    border: none;
+    box-sizing: border-box;
+    background-color: #3F2622; }
+    .input .input__body:focus {
+      outline: none; }
+  .input .input__eye {
+    cursor: pointer;
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: solid 2px #8C782C;
+    transform: translateY(-50%); }
+    .input .input__eye.shown {
+      background-color: #54450B; }
+  .input-small {
+    width: 120px;
+    font-size: 18px; }
+    .input-small .input__eye {
+      width: 15px;
+      height: 15px; }
+  .input-middle {
+    width: 160px;
+    font-size: 24px; }
+    .input-middle .input__eye {
+      width: 25px;
+      height: 25px; }
+  .input-large {
+    width: 200px;
+    font-size: 32px; }
+    .input-large .input__eye {
+      width: 30px;
+      height: 30px; }
+.header__login__form {
   position: absolute;
   left: 50%;
   top: 80px;
-  width: 250px;
+  width: 280px;
   color: #8C782C;
   font-size: 16px;
   border-radius: 25px;
@@ -64,42 +111,44 @@
   perspective: 800px;
   transform: translateX(-50%);
   transition: opacity 0.3s linear, visibility 0.3s; }
-  .header__login-form > div {
+  .header__login__form .header__login__form-signin, .header__login__form .header__login__form-signup {
     position: absolute;
     width: 100%;
     padding: 10px;
+    text-align: right;
     border-radius: 10px;
     box-sizing: border-box;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     background-color: rgba(97, 53, 35, 0.7);
     transition: transform 0.3s linear; }
-    .header__login-form > div > div {
+    .header__login__form .header__login__form-signin .header__login__form__row, .header__login__form .header__login__form-signup .header__login__form__row {
       position: relative;
       width: 100%; }
-      .header__login-form > div > div:not(:nth-child(1)) {
+      .header__login__form .header__login__form-signin .header__login__form__row input[name=submit], .header__login__form .header__login__form-signup .header__login__form__row input[name=submit] {
+        display: inline-block; }
+      .header__login__form .header__login__form-signin .header__login__form__row .text, .header__login__form .header__login__form-signup .header__login__form__row .text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        line-height: 1.6; }
+      .header__login__form .header__login__form-signin .header__login__form__row:not(:nth-child(1)), .header__login__form .header__login__form-signup .header__login__form__row:not(:nth-child(1)) {
         margin-top: 30px; }
-      .header__login-form > div > div:last-child {
+      .header__login__form .header__login__form-signin .header__login__form__row:last-child, .header__login__form .header__login__form-signup .header__login__form__row:last-child {
         text-align: center; }
-  .header__login-form input[name=submit] {
-    display: inline-block; }
-  .header__login-form input:not([name=submit]) {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 70px; }
-  .header__login-form .header__login-form__signup {
+  .header__login__form .header__login__form-signup {
     transform: rotateY(180deg); }
-  .header__login-form.hidden {
+  .header__login__form.hidden {
     opacity: 0;
     visibility: hidden; }
-  .header__login-form.signin .header__login-form__signin {
+  .header__login__form.signin .header__login__form-signin {
     transform: rotateY(0deg); }
-  .header__login-form.signin .header__login-form__signup {
+  .header__login__form.signin .header__login__form-signup {
     transform: rotateY(180deg); }
-  .header__login-form.signup .header__login-form__signin {
+  .header__login__form.signup .header__login__form-signin {
     transform: rotateY(-180deg); }
-  .header__login-form.signup .header__login-form__signup {
+  .header__login__form.signup .header__login__form-signup {
     transform: rotateY(0deg); }
 .header {
   z-index: 2;
