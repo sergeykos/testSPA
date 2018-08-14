@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from 'components/common/Input/Input';
+import Button from 'components/common/Button/Button';
 import './style';
 
 const DEFAULT_CLASSNAME = 'header__login__form';
@@ -14,7 +15,7 @@ class Header extends React.Component{
         element = (
             <div className={ className + ' ' + action }>
                 
-                <div className={ className + '-signin' }>
+                <form className={ className + '-signin' } autoComplete="off">
                     <div className={ className + '__row' }>
                         <div className="text">User name:</div>
                         <Input name="login" type="text"/>
@@ -24,10 +25,10 @@ class Header extends React.Component{
                         <Input name="password" type="password"/>
                     </div>
                     <div className={ className + '__row' }>
-                        <input name="submit" type="submit" value="Sign in"/>
+                        <Button name="submit" text="Sign in"/>
                     </div>
-                </div>
-                <div className={ className + '-signup' }>
+                </form>
+                <form className={ className + '-signup' } autoComplete="off">
                     <div className={ className + '__row' }>
                         <div className="text">User name:</div>
                         <Input name="login" type="text"/>
@@ -38,12 +39,12 @@ class Header extends React.Component{
                     </div>
                     <div className={ className + '__row' }>
                         <div className="text">Confirm password:</div>
-                        <Input name="password" type="passwordConfirm"/>
+                        <Input name="passwordConfirm" type="password"/>
                     </div>
                     <div className={ className + '__row' }>
-                        <input name="submit" type="submit" value="Sign up"/>
+                        <Button name="submit" text="Sign up"/>
                     </div>
-                </div>
+                </form>
             </div>
         );
         return element;
