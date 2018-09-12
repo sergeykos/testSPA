@@ -127,6 +127,28 @@
     width: 80px; }
     .button.small .button__body {
       font-size: 18px; }
+.form {
+  position: absolute;
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  border-radius: 10px;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  background-color: rgba(97, 53, 35, 0.7);
+  transition: transform 0.3s linear; }
+  .form .form__row {
+    position: relative;
+    width: 100%; }
+    .form .form__row .form__row__label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      line-height: 1.6; }
+    .form .form__row:not(:first-child) {
+      margin-top: 30px; }
 .header__login__form {
   position: absolute;
   left: 50%;
@@ -139,45 +161,21 @@
   perspective: 800px;
   transform: translateX(-50%);
   transition: opacity 0.3s linear, visibility 0.3s; }
-  .header__login__form .header__login__form-signin, .header__login__form .header__login__form-signup {
-    position: absolute;
-    width: 100%;
-    padding: 10px;
-    text-align: right;
-    border-radius: 10px;
-    box-sizing: border-box;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    background-color: rgba(97, 53, 35, 0.7);
-    transition: transform 0.3s linear; }
-    .header__login__form .header__login__form-signin .header__login__form__row, .header__login__form .header__login__form-signup .header__login__form__row {
-      position: relative;
-      width: 100%; }
-      .header__login__form .header__login__form-signin .header__login__form__row input[name=submit], .header__login__form .header__login__form-signup .header__login__form__row input[name=submit] {
-        display: inline-block; }
-      .header__login__form .header__login__form-signin .header__login__form__row .text, .header__login__form .header__login__form-signup .header__login__form__row .text {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        line-height: 1.6; }
-      .header__login__form .header__login__form-signin .header__login__form__row:not(:nth-child(1)), .header__login__form .header__login__form-signup .header__login__form__row:not(:nth-child(1)) {
-        margin-top: 30px; }
-      .header__login__form .header__login__form-signin .header__login__form__row:last-child, .header__login__form .header__login__form-signup .header__login__form__row:last-child {
-        text-align: center; }
-  .header__login__form .header__login__form-signup {
+  .header__login__form .form .form__row:last-child {
+    text-align: center; }
+  .header__login__form .form.signup {
     transform: rotateY(180deg); }
+  .header__login__form.signin .form.signin {
+    transform: rotateY(0deg); }
+  .header__login__form.signin .form.signup {
+    transform: rotateY(180deg); }
+  .header__login__form.signup .form.signin {
+    transform: rotateY(-180deg); }
+  .header__login__form.signup .form.signup {
+    transform: rotateY(0deg); }
   .header__login__form.hidden {
     opacity: 0;
     visibility: hidden; }
-  .header__login__form.signin .header__login__form-signin {
-    transform: rotateY(0deg); }
-  .header__login__form.signin .header__login__form-signup {
-    transform: rotateY(180deg); }
-  .header__login__form.signup .header__login__form-signin {
-    transform: rotateY(-180deg); }
-  .header__login__form.signup .header__login__form-signup {
-    transform: rotateY(0deg); }
 .header {
   z-index: 2;
   position: relative;
@@ -200,12 +198,12 @@
     height: 21px; }
     .header .header__login > div {
       display: inline-block; }
-    .header .header__login .header__login-signin-text, .header .header__login .header__login-signup-text {
+    .header .header__login .header__login__signin-text, .header .header__login .header__login__signup-text {
       cursor: pointer;
       color: #8C782C;
       font-style: italic;
       text-decoration: underline; }
-    .header .header__login .header__login-delimiter {
+    .header .header__login .header__login__delimiter {
       display: inline-block;
       margin: 0 5px 0;
       height: 100%;
@@ -216,6 +214,86 @@
     position: absolute;
     right: 25px;
     top: 25px; }
+.slider {
+  position: relative;
+  margin: auto;
+  height: 100%;
+  width: 900px;
+  overflow: hidden; }
+  .slider .slider__main-picture {
+    margin: 50px auto 0;
+    width: 600px;
+    height: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; }
+    .slider .slider__main-picture.picture-0 {
+      background-image: url(images/image_0.jpg); }
+    .slider .slider__main-picture.picture-1 {
+      background-image: url(images/image_1.jpg); }
+    .slider .slider__main-picture.picture-2 {
+      background-image: url(images/image_2.jpg); }
+    .slider .slider__main-picture.picture-3 {
+      background-image: url(images/image_3.jpg); }
+    .slider .slider__main-picture.picture-4 {
+      background-image: url(images/image_4.jpg); }
+    .slider .slider__main-picture.picture-5 {
+      background-image: url(images/image_5.png); }
+  .slider .slider__row {
+    position: relative;
+    margin: 20px auto;
+    width: 700px;
+    height: 70px;
+    text-align: center; }
+    .slider .slider__row .slider__arrow {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      border: 15px solid transparent;
+      transform: translateY(-50%); }
+      .slider .slider__row .slider__arrow.left {
+        left: 50px;
+        border-right: 25px solid #8C782C; }
+      .slider .slider__row .slider__arrow.right {
+        right: 50px;
+        border-left: 25px solid #8C782C; }
+    .slider .slider__row .slider__small-picture__wrapper {
+      display: inline-block;
+      position: relative;
+      top: 50%;
+      overflow: hidden;
+      transform: translateY(-50%); }
+      .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner {
+        display: inline-block;
+        margin-left: 0;
+        width: inherit;
+        white-space: nowrap;
+        transition: margin-left 0.3s linear; }
+        .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture {
+          cursor: pointer;
+          display: inline-block;
+          margin: 0 10px;
+          width: 60px;
+          height: 40px;
+          vertical-align: middle;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          transition: box-shadow 0.2s linear; }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture.picture-0 {
+            background-image: url(images/image_0.jpg); }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture.picture-1 {
+            background-image: url(images/image_1.jpg); }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture.picture-2 {
+            background-image: url(images/image_2.jpg); }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture.picture-3 {
+            background-image: url(images/image_3.jpg); }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture.picture-4 {
+            background-image: url(images/image_4.jpg); }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture.picture-5 {
+            background-image: url(images/image_5.png); }
+          .slider .slider__row .slider__small-picture__wrapper .slider__small-picture__inner .slider__small-picture:hover {
+            box-shadow: #8C782C 0px 0px 5px 5px; }
 .main {
   z-index: 1;
   position: relative;

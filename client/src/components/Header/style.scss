@@ -24,13 +24,13 @@ $className: 'header';
         > div {
             display: inline-block;
         }
-        .#{$className}__login-signin-text, .#{$className}__login-signup-text {
+        .#{$className}__login__signin-text, .#{$className}__login__signup-text {
             cursor: pointer;
             color: #8C782C;
             font-style: italic;
             text-decoration: underline;
         }
-        .#{$className}__login-delimiter{
+        .#{$className}__login__delimiter{
             display: inline-block;
             margin: 0 5px 0;
             height: 100%;

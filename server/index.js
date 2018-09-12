@@ -5,31 +5,26 @@ import path from 'path';
 import mysql from 'mysql';
 import config from './config';
 
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.dev.config';
+const app = express();
 
-const app = express(),
-	  compiler = webpack(webpackConfig);
+// const mysqlConnection = mysql.createConnection(config['db']);
 
-app.use(webpackDevMiddleware(compiler, {
-	hot: true,
-	publicPath: webpackConfig.output.publicPath,
-	noInfo: true
-}));
-app.use(webpackHotMiddleware(compiler));
-// app.use(morgan('combined'));
-// app.use(session({
-// 	resave: true,
-// 	saveUninitialized: true,
-// 	secret: config.secret
-// }));
-console.log(__dirname);
+// mysqlConnection.connect();
+
+// mysqlConnection.query('SELECT * from users', function(err, rows, fields) {
+// 	if (err) throw err;
+// 	console.log(rows);
+// });
+
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+ 
 app.get('*', function(req, res){
-	res.sendFile(path.join(__dirname, '../client/index.html'));
+	console.log(req);
+	res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
-app.listen(config.port, error => {
+
+app.listen(config.port, function(error) {
 	if (error) throw error;
 });

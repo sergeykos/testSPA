@@ -1,0 +1,106 @@
+$className: 'slider';
+
+.#{$className} {
+    position: relative;
+    margin: auto;
+    height: 100%;
+    width: 900px;
+    overflow: hidden;
+    .#{$className}__main-picture {
+        margin: 50px auto 0;
+        width: 600px;
+        height: 400px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        &.picture-0 {
+            background-image: url('../../../images/slider/image_0.jpg');
+        }
+        &.picture-1 {
+            background-image: url('../../../images/slider/image_1.jpg');
+        }
+        &.picture-2 {
+            background-image: url('../../../images/slider/image_2.jpg');
+        }
+        &.picture-3 {
+            background-image: url('../../../images/slider/image_3.jpg');
+        }
+        &.picture-4 {
+            background-image: url('../../../images/slider/image_4.jpg');
+        }
+        &.picture-5 {
+            background-image: url('../../../images/slider/image_5.png');
+        }
+    }
+    .#{$className}__row {
+        position: relative;
+        margin: 20px auto;
+        width: 700px;
+        height: 70px;
+        text-align: center;
+        .#{$className}__arrow {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            border: 15px solid transparent;
+            transform: translateY(-50%);
+            &.left {
+                left: 50px;
+                border-right: 25px solid #8C782C;
+            }
+            &.right {
+                right: 50px;
+                border-left: 25px solid #8C782C;
+            }
+        }
+        .#{$className}__small-picture__wrapper {
+            display: inline-block;
+            position: relative;
+            top: 50%;
+            overflow: hidden;
+            transform: translateY(-50%);
+            .#{$className}__small-picture__inner {
+                display: inline-block;
+                margin-left: 0;
+                width: inherit;
+                white-space: nowrap;
+                transition: margin-left 0.3s linear;
+                .#{$className}__small-picture {
+                    cursor: pointer;
+                    display: inline-block;
+                    margin: 0 10px;
+                    width: 60px;
+                    height: 40px;
+                    vertical-align: middle;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    transition: box-shadow 0.2s linear;
+                    &.picture-0 {
+                        background-image: url('../../../images/slider/image_0.jpg');
+                    }
+                    &.picture-1 {
+                        background-image: url('../../../images/slider/image_1.jpg');
+                    }
+                    &.picture-2 {
+                        background-image: url('../../../images/slider/image_2.jpg');
+                    }
+                    &.picture-3 {
+                        background-image: url('../../../images/slider/image_3.jpg');
+                    }
+                    &.picture-4 {
+                        background-image: url('../../../images/slider/image_4.jpg');
+                    }
+                    &.picture-5 {
+                        background-image: url('../../../images/slider/image_5.png');
+                    }
+                    &:hover {
+                        box-shadow: #8C782C 0px 0px 5px 5px;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+}

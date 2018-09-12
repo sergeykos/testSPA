@@ -1,25 +1,22 @@
 import React from 'react';
-import Input from 'components/common/Input/Input';
-//import Chat from './Chat/Chat';
+import Slider from './Slider/Slider';
 import './style';
 
 const CLASSNAME_PREFIX = 'main';
-const TEXT_CONTENT = {
-    'en': "Hello there, its my test react app. Don't judge me strictly. I tried to build it from scratch. You can look socket-chat, location changer, and authorization. Try it. I hope you will be pleasure."
-};
 
 
-class Main extends React.Component{
-    render(){
-        let element;
+class Main extends React.Component {
 
-        element = (
+    render() {
+        let sliderProps = {
+            rowLength: 5
+        }
+
+        return (
             <div className={ CLASSNAME_PREFIX }>
-                <div className={ CLASSNAME_PREFIX + '__text-content' }>{ TEXT_CONTENT['en'] }</div>
-                {/* <Chat className={ CLASSNAME_PREFIX + '__chat' }/> */}
+                <Slider {...sliderProps}/>
             </div>
         );
-        return element;
     }
 }
 

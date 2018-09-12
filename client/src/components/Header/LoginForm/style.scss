@@ -12,59 +12,32 @@ $className: 'header__login__form';
     perspective: 800px;
     transform: translateX(-50%);
     transition: opacity 0.3s linear, visibility 0.3s;
-    .#{$className}-signin, .#{$className}-signup {
-        position: absolute;
-        width: 100%;
-        padding: 10px;
-        text-align: right;
-        border-radius: 10px;
-        box-sizing: border-box;
-        backface-visibility: hidden;
-        transform-style: preserve-3d;
-        background-color: rgba(97, 53, 35, 0.7);
-        transition: transform 0.3s linear;
-        .#{$className}__row {
-            position: relative;
-            width: 100%;
-            input[name=submit]{
-                display: inline-block;
-            }
-            .text {
-                position: absolute;
-                left: 0;
-                top: 0;
-                height: 100%;
-                line-height: 1.6;
-            }
-            &:not(:nth-child(1)) {
-                margin-top: 30px;
-            }
-            &:last-child{
-                text-align: center;
-            }
+    .form {
+        .form__row:last-child {
+            text-align: center;
         }
-    }
-    .#{$className}-signup {
-        transform: rotateY(180deg);
-    }
-    &.hidden {
-        opacity: 0;
-        visibility: hidden;
+        &.signup {
+            transform: rotateY(180deg);
+        }
     }
     &.signin {
-        .#{$className}-signin {
+        .form.signin {
             transform: rotateY(0deg);
         }
-        .#{$className}-signup {
+        .form.signup {
             transform: rotateY(180deg);
         }
     }
     &.signup {
-        .#{$className}-signin {
+        .form.signin {
             transform: rotateY(-180deg);
         }
-        .#{$className}-signup {
+        .form.signup {
             transform: rotateY(0deg);
         }
+    }
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
     }
 }

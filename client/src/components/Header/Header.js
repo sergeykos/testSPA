@@ -20,10 +20,10 @@ class Header extends React.Component{
             <header className={ CLASSNAME_PREFIX }>
                 <div className={ CLASSNAME_PREFIX + '__title' }>{ TITLE }</div>
                 <div className={ CLASSNAME_PREFIX + '__login' }>
-                    <div className={ CLASSNAME_PREFIX + '__login-signin-text' } data-action="signin" onClick={ this.toggle }>Signin</div>
-                    <div className="header__login-delimiter"></div>
-                    <div className={ CLASSNAME_PREFIX + '__login-signup-text' } data-action="signup" onClick={ this.toggle }>Signup</div>
-                    <LoginForm className={ CLASSNAME_PREFIX + '__login-form'} action={ this.state.action }/>
+                    <div className={ CLASSNAME_PREFIX + '__login__signin-text' } data-action="signin" onClick={ this.toggle }>Signin</div>
+                    <div className="header__login__delimiter"></div>
+                    <div className={ CLASSNAME_PREFIX + '__login__signup-text' } data-action="signup" onClick={ this.toggle }>Signup</div>
+                    <LoginForm className={ CLASSNAME_PREFIX + '__login__form'} action={ this.state.action }/>
                 </div>
                 <Dropdown className={ CLASSNAME_PREFIX + '__language' }/>
             </header>
