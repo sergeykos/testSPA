@@ -3,7 +3,7 @@ import './style';
 
 const DEFAULT_CLASSNAME = 'slider';
 const DEFAULT_ROW_LENGTH = 3;
-const DEFAULT_PICTURES = [0, 1, 2, 3, 4, 5];
+const DEFAULT_PICTURES = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const DEFAULT_SMALL_PICTURE_WIDTH = 80;
 
 class Slider extends React.Component {
@@ -12,7 +12,7 @@ class Slider extends React.Component {
 
         this.state = {
             currentPicture: 0,
-            wrapperOffset: 0
+            innerOffset: 0
         };
 
         this.staticData = {
@@ -22,44 +22,64 @@ class Slider extends React.Component {
             smallPictureWidth: DEFAULT_SMALL_PICTURE_WIDTH
         };
 
-        this.handleClick = this.handleClick.bind(this);
+        this.innerRef = React.createRef();
+
+        this.handleClickArrow = this.handleClickArrow.bind(this);
     }
 
     render() {
-        let pictures, innerStyle = { marginLeft: this.state.wrapperOffset + 'px' },
+        let pictures, innerStyle = { left: this.state.innerOffset + 'px' },
             wrapperStyle = { width: this.staticData.rowLength * this.staticData.smallPictureWidth + 'px' };
 
-        pictures = this.staticData.pictures.map(picture => {
-            return <div className={ this.staticData.className + '__small-picture picture-' + picture } key={picture}></div>
+        pictures = this.staticData.pictures.map(pictureIndex => {
+            return <div className={ this.staticData.className + '__small-picture picture-' + pictureIndex } key={pictureIndex} onClick={ this.handleClickSmallPicture.bind(this, pictureIndex) }></div>
         });
 
         return (
             <div className={ this.staticData.className }>
                 <div className={ this.staticData.className + '__main-picture picture-' + this.state.currentPicture }></div>
                 <div className={ this.staticData.className + '__row' }>
-                    <div className={ this.staticData.className + '__arrow left' } data-type="left" onClick={ this.handleClick }></div>
+                    <div className={ this.staticData.className + '__arrow left' } data-type="left" onClick={ this.handleClickArrow }></div>
                         <div className={ this.staticData.className + '__small-picture__wrapper' } style={ wrapperStyle }>
-                            <div className={ this.staticData.className + '__small-picture__inner' } style={ innerStyle }>
+                            <div className={ this.staticData.className + '__small-picture__inner' } ref={ this.innerRef } style={ innerStyle }>
                                 { pictures }
                             </div>
                         </div>
-                    <div className={ this.staticData.className + '__arrow right' } data-type="right" onClick={ this.handleClick }></div>
+                    <div className={ this.staticData.className + '__arrow right' } data-type="right" onClick={ this.handleClickArrow }></div>
                 </div>
             </div>
         );
     }
 
-    handleClick(event) {
-        let target = event.target, wrapperOffset;
+    handleClickSmallPicture(pictureIndex) {
+        this.setState({
+            currentPicture: pictureIndex
+        });
+    }
+
+    handleClickArrow(event) {
+        let target = event.target, innerOffset, inner = this.innerRef.current;
 
         if (target.dataset.type === 'left') {
-            wrapperOffset =  this.state.wrapperOffset - this.staticData.smallPictureWidth * 2;
+            innerOffset =  this.state.innerOffset + this.staticData.smallPictureWidth;
         }
         else {
-            wrapperOffset =  this.state.wrapperOffset + this.staticData.smallPictureWidth * 2;
+            innerOffset =  this.state.innerOffset - this.staticData.smallPictureWidth;
         }
 
-        this.setState( {wrapperOffset} );
+        let innerLeft = parseInt(inner.style.left) + innerOffset,
+            innerMinLeft = parseInt(inner.style.left) - (this.staticData.pictures.length - this.staticData.rowLength) * this.staticData.smallPictureWidth;
+
+
+        if (innerLeft <= 0 && innerLeft >= innerMinLeft)
+            this.setState( {innerOffset} );
+        else {
+            target.classList.add('shake');
+            setTimeout(function() {
+                target.classList.remove('shake');
+            }, 510);
+        }
+
     }
 }
 
