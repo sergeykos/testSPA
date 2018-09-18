@@ -17,31 +17,31 @@ $className: 'slider';
         background-position: center;
         transition: background-image 0.2s linear;
         &.picture-0 {
-            background-image: url('../../../images/slider/image_0.png');
+            background-image: url('./images/image_0.png');
         }
         &.picture-1 {
-            background-image: url('../../../images/slider/image_1.jpg');
+            background-image: url('./images/image_1.jpg');
         }
         &.picture-2 {
-            background-image: url('../../../images/slider/image_2.jpg');
+            background-image: url('./images/image_2.jpg');
         }
         &.picture-3 {
-            background-image: url('../../../images/slider/image_3.jpg');
+            background-image: url('./images/image_3.jpg');
         }
         &.picture-4 {
-            background-image: url('../../../images/slider/image_4.jpg');
+            background-image: url('./images/image_4.jpg');
         }
         &.picture-5 {
-            background-image: url('../../../images/slider/image_5.jpg');
+            background-image: url('./images/image_5.jpg');
         }
         &.picture-6 {
-            background-image: url('../../../images/slider/image_6.jpg');
+            background-image: url('./images/image_6.jpg');
         }
         &.picture-7 {
-            background-image: url('../../../images/slider/image_7.jpg');
+            background-image: url('./images/image_7.jpg');
         }
         &.picture-8 {
-            background-image: url('../../../images/slider/image_8.jpg');
+            background-image: url('./images/image_8.jpg');
         }
     }
     .#{$className}__row {
@@ -91,31 +91,31 @@ $className: 'slider';
                     background-position: center;
                     transition: box-shadow 0.2s linear;
                     &.picture-0 {
-                        background-image: url('../../../images/slider/image_0.png');
+                        background-image: url('./images/image_0.png');
                     }
                     &.picture-1 {
-                        background-image: url('../../../images/slider/image_1.jpg');
+                        background-image: url('./images/image_1.jpg');
                     }
                     &.picture-2 {
-                        background-image: url('../../../images/slider/image_2.jpg');
+                        background-image: url('./images/image_2.jpg');
                     }
                     &.picture-3 {
-                        background-image: url('../../../images/slider/image_3.jpg');
+                        background-image: url('./images/image_3.jpg');
                     }
                     &.picture-4 {
-                        background-image: url('../../../images/slider/image_4.jpg');
+                        background-image: url('./images/image_4.jpg');
                     }
                     &.picture-5 {
-                        background-image: url('../../../images/slider/image_5.jpg');
+                        background-image: url('./images/image_5.jpg');
                     }
                     &.picture-6 {
-                        background-image: url('../../../images/slider/image_6.jpg');
+                        background-image: url('./images/image_6.jpg');
                     }
                     &.picture-7 {
-                        background-image: url('../../../images/slider/image_7.jpg');
+                        background-image: url('./images/image_7.jpg');
                     }
                     &.picture-8 {
-                        background-image: url('../../../images/slider/image_8.jpg');
+                        background-image: url('./images/image_8.jpg');
                     }
                     &:hover {
                         box-shadow: #8C782C 0px 0px 5px 5px;

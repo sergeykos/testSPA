@@ -1,4 +1,5 @@
 import React from 'react';
+import Game from './Game/Game';
 import Slider from './Slider/Slider';
 import News from './News/News';
 import './style';
@@ -34,6 +35,7 @@ class Main extends React.Component {
 
         return (
             <div className={ CLASSNAME_PREFIX }>
+                <Game/>
                 <Slider/>
                 <News newsData={ newsData }/>
             </div>

@@ -222,6 +222,110 @@
   40%, 80% {
     transform: translateX(5px); } }
 
+@keyframes roll {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+.game {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 300px;
+  height: 500px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgba(123, 71, 43, 0.7);
+  transition: left 0.5s ease-out; }
+  .game .game__play-button {
+    z-index: 2;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    opacity: 0.7;
+    color: #000;
+    font-size: 18px;
+    line-height: 70px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #8C782C;
+    transition: opacity 0.2s linear; }
+    .game .game__play-button:hover {
+      opacity: 1; }
+  .game .game__label {
+    cursor: pointer;
+    position: absolute;
+    right: -50px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 50px;
+    height: 100px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgba(123, 71, 43, 0.7); }
+    .game .game__label .game__arrow {
+      width: 100%;
+      height: 100%;
+      transform: rotate(180deg);
+      background-repeat: no-repeat;
+      background-position: 10px center;
+      background-size: 40px 80px;
+      background-image: url(images/arrow.svg);
+      transition: transform 0.5s ease-out; }
+  .game .game__field {
+    position: relative;
+    margin: 15% auto;
+    width: 80%;
+    height: 80%;
+    background-color: #3F2622; }
+    .game .game__field .game__plate {
+      position: absolute;
+      width: 60px;
+      height: 20px;
+      background-color: #8C782C;
+      transition: left 0.1s linear; }
+    .game .game__field .game__ball {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-size: 100% 100%;
+      background-image: url(images/ball.svg); }
+  .game.closed {
+    left: -300px; }
+    .game.closed .game__arrow {
+      transform: rotate(0deg); }
+  .game.started .game__play-button {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(2);
+    transition: opacity 0.3s linear, visibility 0.3s, transform 0.3s linear; }
+  .game.started .game__ball {
+    animation: roll 1s linear infinite; }
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0); }
+  20%, 60% {
+    transform: translateX(-5px); }
+  40%, 80% {
+    transform: translateX(5px); } }
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
 .slider {
   position: relative;
   margin: auto;
