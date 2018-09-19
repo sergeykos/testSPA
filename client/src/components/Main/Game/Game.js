@@ -8,7 +8,10 @@ const DEFAULT_BALL_DIRECTION_X = 'left';
 const DEFAULT_BALL_DIRECTION_Y = 'bottom';
 const DEFAULT_PLATE_LEFT = 90;
 const DEFAULT_PLATE_TOP = 380;
-const DEFAULT_GAME_SPEED = 10;
+const DEFAULT_GAME_MODE = 'slow';
+const DEFAULT_GAME_SLOW_SPEED = 10;
+const DEFAULT_GAME_MIDDLE_SPEED = 5;
+const DEFAULT_GAME_FAST_SPEED = 1;
 
 
 class Game extends React.Component {
@@ -17,13 +20,19 @@ class Game extends React.Component {
         super(props);
 
         this.staticData = {
-            className: this.props.className || DEFAULT_CLASSNAME
+            className: this.props.className || DEFAULT_CLASSNAME,
+            defaultMode: 'slow',
+            modeSpeed: {
+                slow: DEFAULT_GAME_SLOW_SPEED,
+                middle: DEFAULT_GAME_MIDDLE_SPEED,
+                fast: DEFAULT_GAME_FAST_SPEED
+            }
         };
 
         this.state = {
             isClosed: true,
             isStarted: false,
-            speed: 10,
+            mode: DEFAULT_GAME_MODE,
             ballData: {
                 direction: {
                     X: DEFAULT_BALL_DIRECTION_X,
@@ -86,6 +95,11 @@ class Game extends React.Component {
         };
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        clearTimeout(this.timeout);
+    }
+
     render() {
         let ballStyle, plateStyle; 
 
@@ -103,6 +117,7 @@ class Game extends React.Component {
                 <div className={ this.staticData.className + '__label' } onClick={ this.handleClickLabel }>
                     <div className={ this.staticData.className + '__arrow' }></div>
                 </div>
+                <div className={ this.staticData.className + '__mode' + ' ' + this.state.mode }>Mode: <span>{ this.state.mode }</span></div>
                 <div className={ this.staticData.className + '__play-button' } onClick={ this.handleClickPlay }>PLAY</div>
                 <div className={ this.staticData.className + '__field' } onMouseMove={ this.handleMouseMove } ref={ this.field }>
                     <div className={ this.staticData.className + '__ball' } style={ ballStyle } ref={ this.ball }></div>
@@ -129,7 +144,7 @@ class Game extends React.Component {
         let plateLeft;
 
         if (this.state.isStarted) {
-            plateLeft = event.clientX - this.field.current.getBoundingClientRect().x - Math.ceil(this.staticData.plateData.width / 2);
+            plateLeft = event.clientX - this.field.current.getBoundingClientRect().left - Math.ceil(this.staticData.plateData.width / 2);
 
             if (plateLeft <= this.staticData.plateData.minLeft)
                 plateLeft = this.staticData.plateData.minLeft;
@@ -148,6 +163,7 @@ class Game extends React.Component {
     }
 
     startGame() {
+
         this.interval = setInterval(() => {
             let ballData = this.getNewBallData();
 
@@ -158,14 +174,27 @@ class Game extends React.Component {
                     direction: ballData.direction
                 }
             });
-        }, 5);
+        }, this.staticData.modeSpeed[this.state.mode]);
+
+        if (this.mode !== 'fast')
+            this.timeout = setTimeout(() => {
+                this.pauseGame();
+                this.updateMode();
+                this.startGame();
+            }, 10000);
+    }
+
+    pauseGame() {
+        clearInterval(this.interval);
     }
 
     stopGame() {
         clearInterval(this.interval);
+        clearTimeout(this.timeout);
 
         this.setState({
             isStarted: false,
+            mode: this.staticData.defaultMode,
             ballData: {
                 position: this.staticData.ballData.defaultPosition,
                 direction: this.staticData.ballData.defaultDirection
@@ -173,6 +202,12 @@ class Game extends React.Component {
             plateData: {
                 position: this.staticData.plateData.defaultPosition,
             }
+        });
+    }
+
+    updateMode() {
+        this.setState({
+            mode: (this.state.mode === 'slow' ? 'middle' : 'fast')
         });
     }
 
@@ -205,10 +240,6 @@ class Game extends React.Component {
             ballNewDirection.Y = 'bottom';
             ballNewPosition.top += 2;
         }
-        if (ballNewPosition.top > ballStaticData.maxTop) {
-            ballNewDirection.Y = 'top';
-            ballNewPosition.top -= 2;
-        }
 
         if (this.isBounced(ballNewPosition, plateCurrentPosition)) {
             ballNewDirection.Y = 'top';
@@ -217,7 +248,7 @@ class Game extends React.Component {
         if (this.isLost(ballNewPosition, plateCurrentPosition)) {
             ballNewPosition.left = this.staticData.ballData.defaultPosition.left;
             ballNewPosition.top = this.staticData.ballData.defaultPosition.top;
-            alert(':(');
+            alert('Try again :(');
         }
         
         return { position: ballNewPosition, direction: ballNewDirection };

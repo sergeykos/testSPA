@@ -189,6 +189,7 @@
     position: absolute;
     left: 25px;
     top: 25px;
+    color: #8C782C;
     font-size: 46px;
     font-style: italic; }
   .header .header__login {
@@ -262,6 +263,18 @@
     transition: opacity 0.2s linear; }
     .game .game__play-button:hover {
       opacity: 1; }
+  .game .game__mode {
+    position: absolute;
+    right: 30px;
+    top: 10px; }
+    .game .game__mode > span {
+      text-transform: uppercase; }
+    .game .game__mode.slow > span {
+      color: #3ED451; }
+    .game .game__mode.middle > span {
+      color: #E1EC39; }
+    .game .game__mode.fast > span {
+      color: #CE1313; }
   .game .game__label {
     cursor: pointer;
     position: absolute;
@@ -293,8 +306,7 @@
       position: absolute;
       width: 60px;
       height: 20px;
-      background-color: #8C782C;
-      transition: left 0.1s linear; }
+      background-color: #8C782C; }
     .game .game__field .game__ball {
       position: absolute;
       width: 40px;

@@ -38,6 +38,29 @@ $className: 'game';
             opacity: 1;
         }
     }
+    .#{$className}__mode {
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        > span {
+            text-transform: uppercase;
+        }
+        &.slow {
+            > span {
+                color: #3ED451;
+            }
+        }
+        &.middle {
+            > span {
+                color: #E1EC39;
+            }
+        }
+        &.fast {
+            > span {
+                color: #CE1313;
+            }
+        }
+    }
     .#{$className}__label {
         cursor: pointer;
         position: absolute;
@@ -72,7 +95,6 @@ $className: 'game';
             width: 60px;
             height: 20px;
             background-color: #8C782C;
-            transition: left 0.1s linear;
         }
         .#{$className}__ball {
             position: absolute;

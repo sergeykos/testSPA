@@ -12,14 +12,18 @@ class Input extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            visible: false,
-            passwordType: 'password',
-            value: this.props.value || DEFAULT_VALUE,
+        this.staticData = {
             className: this.props.className || DEFAULT_CLASSNAME,
             name: this.props.name || DEFAULT_NAME,
             size: this.props.size || DEFAULT_SIZE,
-            type: this.props.type || DEFAULT_TYPE
+            type: this.props.type || DEFAULT_TYPE,
+            defaultValue: DEFAULT_VALUE
+        }
+
+        this.state = {
+            visible: false,
+            passwordType: 'password',
+            value: this.props.value || DEFAULT_VALUE
         };
 
         this.togglePasswordType = this.togglePasswordType.bind(this);
@@ -27,43 +31,43 @@ class Input extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.refresh && this.state.value !== DEFAULT_VALUE) {
-            this.setState({ value: DEFAULT_VALUE });
+        if (newProps.refresh && this.state.value !== this.staticData.defaultValue) {
+            this.setState({ value: this.staticData.defaultValue });
             if (this.props.handler)
-                this.props.handler(this.state.name, DEFAULT_VALUE);
+                this.props.handler(this.staticData.name, this.staticData.defaultValue);
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         console.log(`Component ${this.state.className} mounted.`);
     }
     
-    componentWillUpdate() {
+    componentDidUpdate() {
         console.log(`Component ${this.state.className} updated.`);
     }
 
     render() {
-        let element, className = this.state.className, name = this.state.name, value = this.state.value;
+        let element, className = this.staticData.className, name = this.staticData.name;
         
-        switch (this.state.type) {
+        switch (this.staticData.type) {
             case 'textarea':
                 element = 
-                    (<div className={ className + ` ${className}-${this.state.size}`} >
-                        <textarea className={ className + '__body' } name={ name } onChange={ this.handleChange } value={ value }></textarea>
+                    (<div className={ className + ` ${className}-${this.staticData.size}`} >
+                        <textarea className={ className + '__body' } name={ name } onChange={ this.handleChange } value={ this.state.value }></textarea>
                     </div>);
                 break;
             case 'password':
                 element = 
-                    (<div className={ className + ` ${className}-${this.state.size}` }>
-                        <input className={ className + '__body' } name={ name } onChange={ this.handleChange } type={ this.state.passwordType } value={ value }></input>
+                    (<div className={ className + ` ${className}-${this.staticData.size}` }>
+                        <input className={ className + '__body' } name={ name } onChange={ this.handleChange } type={ this.state.passwordType } value={ this.state.value }></input>
                         <div className={ className + '__eye' + (this.state.visible ? ' shown' : '') } onClick={ this.togglePasswordType }></div>
                     </div>);
                 break;
             case 'text':
             default: 
                 element = 
-                    (<div className={ className + ` ${className}-${this.state.size}` }>
-                        <input className={ className + '__body' } name={ name } onChange={ this.handleChange } type="text" value={ value }></input>
+                    (<div className={ className + ` ${className}-${this.staticData.size}` }>
+                        <input className={ className + '__body' } name={ name } onChange={ this.handleChange } type="text" value={ this.state.value }></input>
                     </div>);
                 break;
         }
@@ -79,7 +83,7 @@ class Input extends React.Component {
         this.setState( {value} ); 
 
         if (this.props.handler)
-            this.props.handler(this.state.name, value);
+            this.props.handler(this.staticData.name, value);
     }
 
     togglePasswordType() {

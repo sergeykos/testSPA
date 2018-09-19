@@ -25,15 +25,18 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.staticData = {
             className: this.props.className || DEFAULT_CLASSNAME,
             classNamePostfix: this.props.classNamePostfix || DEFAULT_CLASSNAME_POSTFIX,
             size: this.props.size || DEFAULT_SIZE,
-            fields: this.props.fields || DEFAULT_FIELDS,
+            fields: this.props.fields || DEFAULT_FIELDS
+        };
+
+        this.state = {
             fieldValues: {}
         };
 
-        this.state.fields.forEach(field => {
+        this.staticData.fields.forEach(field => {
             if (field['type'] !== 'button')
                 this.state.fieldValues[field['name']] = null;
         });
@@ -42,34 +45,34 @@ class Form extends React.Component {
         this.handleField = this.handleField.bind(this);
     }
 
-    componentWillMount() {
-        console.log(`Component ${this.state.className} mounted.`);
+    componentDidMount() {
+        console.log(`Component ${this.staticData.className} mounted.`);
     }
 
-    componentWillUpdate() {
-        console.log(`Component ${this.state.className} updated.`);
+    componentDidUpdate() {
+        console.log(`Component ${this.staticData.className} updated.`);
     }
 
     render() {
-        let className = this.state.className, element;
+        let className = this.staticData.className;
 
-        element = (
-            <form className={ className + ' ' + this.state.classNamePostfix } onSubmit={ this.handleSubmit } autoComplete="off" spellCheck="false">
+        return (
+            <form className={ className + ' ' + this.staticData.classNamePostfix } onSubmit={ this.handleSubmit } autoComplete="off" spellCheck="false">
                 {
-                    this.state.fields.map((field, i) => {
+                    this.staticData.fields.map((field, i) => {
                         if (field['type'] === 'button')
                             return (
                                 <div className={ className + '__row' } key={ i }>
-                                    <Button className={ field['className'] } name={ field['name'] } text={ field['text'] } size={ this.state.size }/>
+                                    <Button className={ field['className'] } name={ field['name'] } text={ field['text'] } size={ this.staticData.size }/>
                                 </div>
                             );
                         else {
-                            let refresh = this.state.classNamePostfix !== this.props.action;
+                            let refresh = this.staticData.classNamePostfix !== this.props.action;
 
                             return (
                                 <div className={ className + '__row' } key={ i }>
                                     <div className={ className + '__row__label' }>{ field['text'] }</div>
-                                    <Input className={ field['className'] } name={ field['name'] } type={ field['type'] } size={ this.state.size } handler={ this.handleField } refresh={ refresh }/>
+                                    <Input className={ field['className'] } name={ field['name'] } type={ field['type'] } size={ this.staticData.size } handler={ this.handleField } refresh={ refresh }/>
                                 </div>
                             );
                         }
@@ -77,15 +80,12 @@ class Form extends React.Component {
                 }
             </form>
         );
-        
-        return element;
     }
 
     handleSubmit(event) {
+        let fieldNames = Object.keys(this.state.fieldValues);
 
         event.preventDefault();
-
-        let fieldNames = Object.keys(this.state.fieldValues);
 
         if (!fieldNames.every(fieldName => this.state.fieldValues[fieldName]))
             alert('Complete all fields!');
@@ -100,10 +100,8 @@ class Form extends React.Component {
 
         this.setState( {fieldValues} );
 
-        if (this.props.handler)
-            this.props.handler();
+        if (this.props.handler) this.props.handler();
     }
 }
-
 
 export default Form;
